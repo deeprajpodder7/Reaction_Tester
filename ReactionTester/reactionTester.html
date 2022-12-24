@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #shape {
+        height: 50px;
+        width: 50px;
+        background-color: brown;
+        position: relative;
+      }
+      #reaction-text{
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="heading">Reaction Tester</h1>
+    <p id="reaction-text">
+      Your reaction time is: <span id="reaction-time"> </span>secs
+    </p>
+    <p id="shape"></p>
+
+    <script>
+      function getRandomColor() {
+        var letters = "0123456789ABCDEF";
+        var color = "#";
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+      function showShape() {
+        document.getElementById("shape").style.display = "block";
+        document.getElementById("shape").style.height =Math.random() * 300 + 100 + "px";
+        document.getElementById("shape").style.width =Math.random() * 300 + 100 + "px";
+        document.getElementById("shape").style.left =Math.random() * 600 + "px";
+        document.getElementById("shape").style.top = Math.random() * 600 + "px";
+        document.getElementById("shape").style.backgroundColor=getRandomColor();
+        if (Math.random() > 0.5) {
+          document.getElementById("shape").style.borderRadius = "50%";
+        } else {
+          document.getElementById("shape").style.borderRadius = "0%";
+        }
+        start = new Date().getTime() / 1000;
+      }
+
+      function delayTime() {
+        window.setTimeout(showShape, 1000);
+      }
+
+      var start = new Date().getTime() / 1000;
+      
+      document.getElementById("shape").onclick = function () {
+        document.getElementById("shape").style.display = "none";
+        var end = new Date().getTime() / 1000;
+        var diff = (end - start).toFixed(4);
+        document.getElementById("reaction-time").innerHTML = diff;
+        delayTime();
+        i++;
+        sum+=diff;
+      }
+ 
+
+    </script>
+  </body>
+</html>
